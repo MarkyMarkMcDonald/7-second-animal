@@ -1,0 +1,15 @@
+{
+  "name": "AwesomeProject",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/react-native/packager/packager.sh"
+  },
+  "dependencies": {
+    "browser-request": "^0.3.3",
+    "lodash": "^3.10.1",
+    "react-native": "^0.8.0",
+    "react-native-button": "^1.2.0",
+    "request": "^2.60.0"
+  }
+}
