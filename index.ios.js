@@ -58,11 +58,7 @@ var AwesomeProject = React.createClass({
 
   render: function() {
     if (!this.state.loading && !this.state.loaded) {
-      return (
-        <View style={styles.container}>
-          <Button style={{color: 'green'}} onPress={this.start}>Start</Button>
-        </View>
-      )
+      return this.renderStartScreen();
     }
 
     if (!this.state.loaded) {
@@ -76,6 +72,14 @@ var AwesomeProject = React.createClass({
         style={styles.listView}
         />
     );
+  },
+
+  renderStartScreen: function() {
+    return (
+      <View style={styles.container}>
+        <Button style={{color: 'green'}} onPress={this.start}>Start</Button>
+      </View>
+    )
   },
 
   renderLoadingView: function() {
