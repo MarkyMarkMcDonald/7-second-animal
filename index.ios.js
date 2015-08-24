@@ -1,140 +1,95 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 var React = require('react-native');
-var Button = require('react-native-button');
-var _ = require('lodash');
-
-var MOCKED_MOVIES_DATA = [
-  {title: 'Title', year: '2015', posters: {thumbnail: 'http://i.imgur.com/UePbdph.jpg'}},
-];
-var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
+var SignatureCapture = require('react-native-signature-capture');
 
 var {
   AppRegistry,
-  Image,
-  StyleSheet,
-  Text,
   View,
-  ListView,
+  Text,
 } = React;
 
-var AwesomeProject = React.createClass({
-  getInitialState: function() {
-    return {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      }),
-      loaded: false,
-      loading: false,
-    };
+var styles = {
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    backgroundColor: '#F5FCFF',
+  }
+};
+
+var steps = {
+  DRAWING: 'DRAWING',
+  SUBMITTING: 'SUBMITTING',
+  AWAITING_VOTE: 'AWAITING_VOTE',
+  VOTING: 'VOTING',
+  VIEWING_VOTE: 'VIEWING_VOTE'
+};
+
+var DrawingHandler = React.createClass({
+  _onSaveEvent: function(result) {
+    this.props.onSave(result.encoded);
   },
-
-  fetchData: function() {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows([]),
-      loading: true,
-      loaded: false,
-    });
-
-    fetch(REQUEST_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
-          loading: false,
-          loaded: true,
-        });
-      })
-      .done();
-  },
-
-  start: function() {
-    this.fetchData();
-  },
-
   render: function() {
-    if (!this.state.loading && !this.state.loaded) {
-      return this.renderStartScreen();
-    }
-
-    if (!this.state.loaded) {
-      return this.renderLoadingView();
-    }
-
-    return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderMovie}
-        style={styles.listView}
-        />
-    );
-  },
-
-  renderStartScreen: function() {
     return (
       <View style={styles.container}>
-        <Button style={{color: 'green'}} onPress={this.start}>Start</Button>
+        <Text>Draw a {this.props.animal}!</Text>
+        <SignatureCapture onSaveEvent={this._onSaveEvent} />
       </View>
     )
   },
-
-  renderLoadingView: function() {
-    return (
-      <View style={styles.container}>
-        <Text>
-          Loading movies...
-        </Text>
-      </View>
-    );
-  },
-
-  renderMovie: function(movie) {
-    return (
-      <View style={styles.container}>
-        <Image
-          source={{uri: movie.posters.thumbnail}}
-          style={styles.thumbnail}
-          />
-        <View style={styles.rightContainer}>
-          <Text style={styles.title}>{movie.title}</Text>
-          <Text style={styles.year}>{movie.year}</Text>
-        </View>
-      </View>
-    );
-  },
 });
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+var AwesomeProject = React.createClass({
+  getInitialState: function() {
+    return {step: steps.DRAWING}
   },
-  rightContainer: {
-    flex: 1,
+  render: function() {
+    switch (this.state.step) {
+      case steps.DRAWING:
+        return <DrawingHandler onSave={this.onSave} animal={'Penguin'}/>;
+        break;
+      case steps.SUBMITTING:
+        return this.renderSubmitting();
+        break;
+      case steps.AWAITING_VOTE:
+        return this.renderAwaitingVote();
+        break;
+    }
   },
-  title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
+  onSave: function(base64Image) {
+    this.setState({step: steps.SUBMITTING});
+
+    fetch('http://localhost:3000/drawings', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'image': base64Image
+      }),
+    })
+      .then(function(response){ return response.json()})
+      .then(() => {
+        this.setState({step: steps.AWAITING_VOTE})
+      });
   },
-  year: {
-    textAlign: 'center',
+  renderSubmitting: function() {
+    return (
+      <View style={styles.container}>
+        <Text>Submitting your Penguin!</Text>
+      </View>
+    )
   },
-  thumbnail: {
-    width: 53,
-    height: 81,
-  },
-  listView: {
-    paddingTop: 20,
-    backgroundColor: '#F5FCFF',
-  },
+  renderAwaitingVote: function() {
+    return (
+      <View style={styles.container}>
+        <Text>Waiting on some slow poke to vote!</Text>
+      </View>
+    )
+  }
 });
+
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
