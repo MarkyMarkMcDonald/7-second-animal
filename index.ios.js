@@ -21,9 +21,7 @@ var styles = {
 var steps = {
   DRAWING: 'DRAWING',
   SUBMITTING: 'SUBMITTING',
-  AWAITING_VOTE: 'AWAITING_VOTE',
-  VOTING: 'VOTING',
-  VIEWING_VOTE: 'VIEWING_VOTE'
+  SUBMITTED: 'SUBMITTED'
 };
 
 var DrawingHandler = React.createClass({
@@ -52,8 +50,8 @@ var AwesomeProject = React.createClass({
       case steps.SUBMITTING:
         return this.renderSubmitting();
         break;
-      case steps.AWAITING_VOTE:
-        return this.renderAwaitingVote();
+      case steps.SUBMITTED:
+        return this.renderSubmitted();
         break;
     }
   },
@@ -72,7 +70,7 @@ var AwesomeProject = React.createClass({
     })
       .then(function(response){ return response.json()})
       .then(() => {
-        this.setState({step: steps.AWAITING_VOTE})
+        this.setState({step: steps.SUBMITTED})
       });
   },
   renderSubmitting: function() {
@@ -82,10 +80,10 @@ var AwesomeProject = React.createClass({
       </View>
     )
   },
-  renderAwaitingVote: function() {
+  renderSubmitted: function() {
     return (
       <View style={styles.container}>
-        <Text>Waiting on some slow poke to vote!</Text>
+        <Text>Submitted your penguin!</Text>
       </View>
     )
   }
