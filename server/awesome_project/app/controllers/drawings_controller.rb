@@ -24,11 +24,18 @@ class DrawingsController < ApplicationController
   end
 
   def create
-    drawing = Drawing.create(image: parseBase64Image(params[:image]))
-    puts drawing
+    Drawing.create(image: parseBase64Image(params[:image]))
     render json: {}
   end
 
+  def index
+    render json: {
+             drawing_urls: Drawing.all.map(&:image_url)
+           }
+  end
+
+
+  private
   def parseBase64Image(encoded)
     image = StringIO.new(Base64.decode64(encoded))
     image.class.class_eval { attr_accessor :original_filename, :content_type }
@@ -36,8 +43,6 @@ class DrawingsController < ApplicationController
     image.content_type = 'image/png'
     image
   end
-
-  private
 
 
 end
