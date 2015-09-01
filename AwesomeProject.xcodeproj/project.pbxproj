@@ -22,8 +22,10 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		56D2C02C1B8A829B002A7D82 /* libRSSignatureCapture.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D2C02B1B8A800E002A7D82 /* libRSSignatureCapture.a */; };
-		56D2C03F1B8AA6E4002A7D82 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D2C03E1B8AA651002A7D82 /* libART.a */; };
+		5656BAC31B93E55E006DFD62 /* DRAWView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656BABC1B93E55E006DFD62 /* DRAWView.m */; };
+		5656BAC41B93E55E006DFD62 /* DRAWViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656BABE1B93E55E006DFD62 /* DRAWViewManager.m */; };
+		5656BAC51B93E55E006DFD62 /* GlobalDrawingState.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656BAC01B93E55E006DFD62 /* GlobalDrawingState.m */; };
+		5656BAC61B93E55E006DFD62 /* PPSSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656BAC21B93E55E006DFD62 /* PPSSignatureView.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -91,20 +93,6 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
-		56D2C02A1B8A800E002A7D82 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 56D2C01C1B8A800E002A7D82 /* RSSignatureCapture.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0C53A99E1B56113D004F2642;
-			remoteInfo = RSSignatureCapture;
-		};
-		56D2C03D1B8AA651002A7D82 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 56D2C0391B8AA650002A7D82 /* ART.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
-			remoteInfo = ART;
-		};
 		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
@@ -141,8 +129,14 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		56D2C01C1B8A800E002A7D82 /* RSSignatureCapture.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RSSignatureCapture.xcodeproj; path = "node_modules/react-native-signature-capture/RSSignatureCapture.xcodeproj"; sourceTree = "<group>"; };
-		56D2C0391B8AA650002A7D82 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
+		5656BABB1B93E55E006DFD62 /* DRAWView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DRAWView.h; path = iOS/DRAWView.h; sourceTree = "<group>"; };
+		5656BABC1B93E55E006DFD62 /* DRAWView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DRAWView.m; path = iOS/DRAWView.m; sourceTree = "<group>"; };
+		5656BABD1B93E55E006DFD62 /* DRAWViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DRAWViewManager.h; path = iOS/DRAWViewManager.h; sourceTree = "<group>"; };
+		5656BABE1B93E55E006DFD62 /* DRAWViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DRAWViewManager.m; path = iOS/DRAWViewManager.m; sourceTree = "<group>"; };
+		5656BABF1B93E55E006DFD62 /* GlobalDrawingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlobalDrawingState.h; path = iOS/GlobalDrawingState.h; sourceTree = "<group>"; };
+		5656BAC01B93E55E006DFD62 /* GlobalDrawingState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalDrawingState.m; path = iOS/GlobalDrawingState.m; sourceTree = "<group>"; };
+		5656BAC11B93E55E006DFD62 /* PPSSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPSSignatureView.h; path = iOS/PPSSignatureView.h; sourceTree = "<group>"; };
+		5656BAC21B93E55E006DFD62 /* PPSSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSSignatureView.m; path = iOS/PPSSignatureView.m; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,8 +153,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56D2C03F1B8AA6E4002A7D82 /* libART.a in Frameworks */,
-				56D2C02C1B8A829B002A7D82 /* libRSSignatureCapture.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -253,6 +245,14 @@
 		13B07FAE1A68108700A75B9A /* AwesomeProject */ = {
 			isa = PBXGroup;
 			children = (
+				5656BABB1B93E55E006DFD62 /* DRAWView.h */,
+				5656BABC1B93E55E006DFD62 /* DRAWView.m */,
+				5656BABD1B93E55E006DFD62 /* DRAWViewManager.h */,
+				5656BABE1B93E55E006DFD62 /* DRAWViewManager.m */,
+				5656BABF1B93E55E006DFD62 /* GlobalDrawingState.h */,
+				5656BAC01B93E55E006DFD62 /* GlobalDrawingState.m */,
+				5656BAC11B93E55E006DFD62 /* PPSSignatureView.h */,
+				5656BAC21B93E55E006DFD62 /* PPSSignatureView.m */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -272,22 +272,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		56D2C01D1B8A800E002A7D82 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				56D2C02B1B8A800E002A7D82 /* libRSSignatureCapture.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		56D2C03A1B8AA650002A7D82 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				56D2C03E1B8AA651002A7D82 /* libART.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,8 +283,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				56D2C0391B8AA650002A7D82 /* ART.xcodeproj */,
-				56D2C01C1B8A800E002A7D82 /* RSSignatureCapture.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -410,10 +392,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 56D2C03A1B8AA650002A7D82 /* Products */;
-					ProjectRef = 56D2C0391B8AA650002A7D82 /* ART.xcodeproj */;
-				},
-				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
@@ -452,10 +430,6 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-				},
-				{
-					ProductGroup = 56D2C01D1B8A800E002A7D82 /* Products */;
-					ProjectRef = 56D2C01C1B8A800E002A7D82 /* RSSignatureCapture.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -523,20 +497,6 @@
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		56D2C02B1B8A800E002A7D82 /* libRSSignatureCapture.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRSSignatureCapture.a;
-			remoteRef = 56D2C02A1B8A800E002A7D82 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		56D2C03E1B8AA651002A7D82 /* libART.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libART.a;
-			remoteRef = 56D2C03D1B8AA651002A7D82 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -586,7 +546,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5656BAC41B93E55E006DFD62 /* DRAWViewManager.m in Sources */,
+				5656BAC61B93E55E006DFD62 /* PPSSignatureView.m in Sources */,
+				5656BAC31B93E55E006DFD62 /* DRAWView.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				5656BAC51B93E55E006DFD62 /* GlobalDrawingState.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

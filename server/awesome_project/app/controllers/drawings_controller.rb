@@ -34,7 +34,6 @@ class DrawingsController < ApplicationController
            }
   end
 
-
   private
   def parseBase64Image(encoded)
     image = StringIO.new(Base64.decode64(encoded))
@@ -43,6 +42,5 @@ class DrawingsController < ApplicationController
     image.content_type = 'image/png'
     image
   end
-
 
 end
