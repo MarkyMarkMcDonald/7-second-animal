@@ -2,7 +2,7 @@ var React = require('react-native');
 var TimerMixin = require('react-timer-mixin');
 var _ = require('lodash');
 var DrawingCanvas = require('./drawing_canvas.ios.js');
-var SERVER_URL = process.env['SERVER_URL'] || 'http://seven-second-animal.cfapps.pez.pivotal.io';
+var SERVER_URL = 'http://seven-second-animal.cfapps.pez.pivotal.io';
 
 var {
   View,
