@@ -5,7 +5,6 @@ var TimerMixin = require('react-timer-mixin');
 var _ = require('lodash');
 var DrawingCanvas = require('./components/drawing_canvas.ios.js');
 
-
 var {
   AppRegistry,
   View,
@@ -13,7 +12,7 @@ var {
   Image,
   NativeModules,
   ListView,
-} = React;
+  } = React;
 
 var styles = {
   container: {
@@ -26,7 +25,7 @@ var styles = {
     flex: 1,
     justifyContent: 'center',
   },
-  image: { flex: 1, width: 362, height: 600},
+  image: {flex: 1, width: 362, height: 600},
 };
 
 var steps = {
@@ -55,9 +54,9 @@ function retrieveDrawingUrls() {
       'Content-Type': 'application/json',
     },
   }).then(function (response) {
-      return response.json()
-    })
-    .then(function(drawings){
+    return response.json()
+  })
+    .then(function (drawings) {
       return _.map(drawings.drawing_urls, function (path) {
         return 'http://localhost:3000' + path;
       });
@@ -83,10 +82,10 @@ function getContentForStep(state, step) {
 
 var AwesomeProject = React.createClass({
   mixins: [TimerMixin],
-  componentDidMount: function() {
+  componentDidMount: function () {
     this.setInterval(this.tick, 1000);
   },
-  tick: function(){
+  tick: function () {
     if (this.state.step === steps.DRAWING) {
       var reducedDrawingCountdown = this.state.drawingCountdown - 1;
       this.setState({step: steps.DRAWING, drawingCountdown: reducedDrawingCountdown});
@@ -118,7 +117,8 @@ var AwesomeProject = React.createClass({
         });
       });
     });
-  }});
+  }
+});
 
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);

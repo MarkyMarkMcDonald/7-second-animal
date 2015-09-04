@@ -16,11 +16,11 @@ var {
   View,
   Text,
   requireNativeComponent,
-} = React;
+  } = React;
 var DrawingCapture = requireNativeComponent('DRAWView', null);
 
 var DrawingCanvas = React.createClass({
-  render: function() {
+  render: function () {
     return (
       <View style={styles.container}>
         <Text style={styles.countdown}>Draw a {this.props.animal}! {this.props.countdown}</Text>
