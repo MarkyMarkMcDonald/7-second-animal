@@ -22,6 +22,9 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
+# paperclip
+server/awesome_project/public/system/
+
 # node.js
 #
 node_modules/
