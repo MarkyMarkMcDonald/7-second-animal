@@ -30,7 +30,7 @@ class DrawingsController < ApplicationController
 
   def index
     render json: {
-             drawing_urls: Drawing.all.map(&:image_url)
+             drawing_urls: Drawing.order(image_updated_at: :desc).all.map(&:image_url)
            }
   end
 

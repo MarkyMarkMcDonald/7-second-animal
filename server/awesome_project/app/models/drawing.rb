@@ -3,6 +3,6 @@ class Drawing < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   def image_url
-    "http://localhost:3000#{image.url(:medium)}"
+    "#{image.url(:original)}"
   end
 end
