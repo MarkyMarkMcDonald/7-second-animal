@@ -79,6 +79,23 @@ function retrieveDrawingUrls() {
       });
     });
 }
+function getContentForStep(state, step) {
+  switch (step) {
+    case steps.DRAWING:
+      return <DrawingHandler animal={'Penguin'} countdown={state.drawingCountdown}/>;
+      break;
+    case steps.SUBMITTING:
+      return <Text>Submitting your Penguin!</Text>;
+      break;
+    case steps.VIEWING:
+      return <ListView
+        dataSource={state.drawingUrls}
+        renderRow={(drawingUrl) => <Image source={{uri: drawingUrl}} style={styles.image}/>}
+        />;
+      break;
+  }
+  return <View></View>
+}
 
 var AwesomeProject = React.createClass({
   mixins: [TimerMixin],
@@ -101,17 +118,11 @@ var AwesomeProject = React.createClass({
     }
   },
   render: function () {
-    switch (this.state.step) {
-      case steps.DRAWING:
-        return <DrawingHandler animal={'Penguin'} countdown={this.state.drawingCountdown}/>;
-        break;
-      case steps.SUBMITTING:
-        return this.renderSubmitting();
-        break;
-      case steps.VIEWING:
-        return this.renderViewing();
-        break;
-    }
+    return (
+      <View style={styles.container}>
+        {getContentForStep(this.state, this.state.step)}
+      </View>
+    );
   },
   saveDrawing: function () {
     NativeModules.DRAWViewManager.imageAsBase64Encoded((error, base64Image) => {
@@ -123,25 +134,7 @@ var AwesomeProject = React.createClass({
         });
       });
     });
-  },
-  renderSubmitting: function () {
-    return (
-      <View style={styles.container}>
-        <Text>Submitting your Penguin!</Text>
-      </View>
-    )
-  },
-  renderViewing: function () {
-    return (
-      <View style={styles.images}>
-        <ListView
-          dataSource={this.state.drawingUrls}
-          renderRow={(drawingUrl) => <Image source={{uri: drawingUrl}} style={styles.image}/>}
-          />
-      </View>
-    )
-  }
-});
+  }});
 
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
