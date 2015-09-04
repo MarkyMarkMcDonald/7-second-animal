@@ -3,18 +3,17 @@
 var React = require('react-native');
 var TimerMixin = require('react-timer-mixin');
 var _ = require('lodash');
+var DrawingCanvas = require('./components/drawing_canvas.ios.js');
+
 
 var {
   AppRegistry,
   View,
   Text,
   Image,
-  requireNativeComponent,
   NativeModules,
   ListView,
 } = React;
-
-var DrawingCapture = requireNativeComponent('DRAWView', null);
 
 var styles = {
   container: {
@@ -22,10 +21,6 @@ var styles = {
     justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
-  },
-  countdown: {
-    justifyContent: 'center',
-    marginTop: 30
   },
   images: {
     flex: 1,
@@ -39,17 +34,6 @@ var steps = {
   SUBMITTING: 'SUBMITTING',
   VIEWING: 'VIEWING'
 };
-
-var DrawingHandler = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.countdown}>Draw a {this.props.animal}! {this.props.countdown}</Text>
-        <DrawingCapture style={{flex: 1}}/>
-      </View>
-    )
-  },
-});
 
 function submitDrawing(base64Image) {
   return fetch('http://localhost:3000/drawings', {
@@ -82,7 +66,7 @@ function retrieveDrawingUrls() {
 function getContentForStep(state, step) {
   switch (step) {
     case steps.DRAWING:
-      return <DrawingHandler animal={'Penguin'} countdown={state.drawingCountdown}/>;
+      return <DrawingCanvas animal={'Penguin'} countdown={state.drawingCountdown}/>;
       break;
     case steps.SUBMITTING:
       return <Text>Submitting your Penguin!</Text>;
