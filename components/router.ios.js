@@ -2,6 +2,7 @@ var React = require('react-native');
 var TimerMixin = require('react-timer-mixin');
 var _ = require('lodash');
 var DrawingCanvas = require('./drawing_canvas.ios.js');
+var SERVER_URL = process.env['SERVER_URL'] || 'http://seven-second-animal.cfapps.pez.pivotal.io';
 
 var {
   View,
@@ -28,7 +29,7 @@ var steps = {
 };
 
 function submitDrawing(base64Image) {
-  return fetch('http://localhost:3000/drawings', {
+  return fetch(SERVER_URL + '/drawings', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -40,7 +41,7 @@ function submitDrawing(base64Image) {
   });
 }
 function retrieveDrawingUrls() {
-  return fetch('http://localhost:3000/drawings', {
+  return fetch(SERVER_URL + '/drawings', {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
@@ -51,7 +52,7 @@ function retrieveDrawingUrls() {
   })
     .then(function (drawings) {
       return _.map(drawings.drawing_urls, function (path) {
-        return 'http://localhost:3000' + path;
+        return SERVER_URL + path;
       });
     });
 }
