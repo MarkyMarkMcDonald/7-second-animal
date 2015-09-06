@@ -4,6 +4,7 @@ var _ = require('lodash');
 var DrawingCanvas = require('./drawing_canvas.ios.js');
 var SERVER_URL = 'http://localhost:3000';
 var queryString = require('query-string');
+var Button = require('react-native-button');
 
 var {
   View,
@@ -59,19 +60,24 @@ function retrieveDrawingUrls(prompt) {
       });
     });
 }
-function getContentForStep(state, step, animal) {
+function getContentForStep(state, step, props, reset) {
   switch (step) {
     case steps.DRAWING:
-      return <DrawingCanvas animal={animal} countdown={state.drawingCountdown}/>;
+      return <DrawingCanvas animal={props.animal} countdown={state.drawingCountdown}/>;
       break;
     case steps.SUBMITTING:
-      return <Text>Submitting your {animal}!</Text>;
+      return <Text>Submitting your {props.animal}!</Text>;
       break;
     case steps.VIEWING:
-      return <ListView
-        dataSource={state.drawingUrls}
-        renderRow={(drawingUrl) => <Image source={{uri: drawingUrl}} style={styles.image}/>}
-        />;
+      return (
+        <View>
+          <Button style={{color: 'green'}} onPress={reset}>Next Animal!</Button>
+          <ListView
+          dataSource={state.drawingUrls}
+          renderRow={(drawingUrl) => <Image source={{uri: drawingUrl}} style={styles.image}/>}
+          />
+        </View>
+      );
       break;
   }
   return <View></View>
@@ -100,9 +106,13 @@ var AnimalSubmission = React.createClass({
   render: function () {
     return (
       <View style={styles.container}>
-        {getContentForStep(this.state, this.state.step, this.props.animal)}
+        {getContentForStep(this.state, this.state.step, this.props, this.reset)}
       </View>
     );
+  },
+  reset: function(){
+    this.props.reset();
+    this.setState({step: steps.DRAWING, drawingCountdown: 7});
   },
   saveDrawing: function () {
     NativeModules.DRAWViewManager.imageAsBase64Encoded((error, base64Image) => {
