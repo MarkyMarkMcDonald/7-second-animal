@@ -1,3 +1,4 @@
 ---
 applications:
 - name: seven-second-animal
+  command: rake db:migrate && bin/rails server -p $PORT -e $RAILS_ENV
