@@ -2,7 +2,8 @@ var React = require('react-native');
 var TimerMixin = require('react-timer-mixin');
 var _ = require('lodash');
 var DrawingCanvas = require('./drawing_canvas.ios.js');
-var SERVER_URL = 'http://seven-second-animal.cfapps.pez.pivotal.io';
+var SERVER_URL = 'http://localhost:3000';
+var queryString = require('query-string');
 
 var {
   View,
@@ -36,20 +37,22 @@ function submitDrawing(base64Image) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      'image': base64Image
+      image: base64Image,
+      prompt: 'penguin'
     }),
   });
 }
 function retrieveDrawingUrls() {
-  return fetch(SERVER_URL + '/drawings', {
+  var endpoint = SERVER_URL + '/drawings?' + queryString.stringify({prompt: 'penguin'});
+  return fetch(endpoint, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     },
   }).then(function (response) {
-    return response.json()
-  })
+      return response.json()
+    })
     .then(function (drawings) {
       return _.map(drawings.drawing_urls, function (path) {
         return SERVER_URL + path;
@@ -91,7 +94,7 @@ var Router = React.createClass({
   getInitialState: function () {
     return {
       step: steps.DRAWING,
-      drawingCountdown: 10
+      drawingCountdown: 7
     }
   },
   render: function () {

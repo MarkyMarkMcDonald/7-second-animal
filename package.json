@@ -1,5 +1,5 @@
 {
-  "name": "7 Second Animal",
+  "name": "SevenSecondAnimal",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
   "dependencies": {
     "browser-request": "^0.3.3",
     "lodash": "^3.10.1",
+    "query-string": "^2.4.1",
     "react-native": "^0.8.0",
     "react-native-button": "^1.2.0",
     "react-native-device-uuid": "^1.1.1",

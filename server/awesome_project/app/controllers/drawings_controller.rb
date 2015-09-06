@@ -24,18 +24,19 @@ class DrawingsController < ApplicationController
   end
 
   def create
-    Drawing.create(image: parseBase64Image(params[:image]))
+    Drawing.create(image: parse_base64_image(params[:image]), prompt: params[:prompt])
     render json: {}
   end
 
   def index
+    prompt = params[:prompt]
     render json: {
-             drawing_urls: Drawing.order(image_updated_at: :desc).all.map(&:image_url)
+             drawing_urls: Drawing.where(prompt: prompt).order(image_updated_at: :desc).limit(10).map(&:image_url)
            }
   end
 
   private
-  def parseBase64Image(encoded)
+  def parse_base64_image(encoded)
     image = StringIO.new(Base64.decode64(encoded))
     image.class.class_eval { attr_accessor :original_filename, :content_type }
     image.original_filename = 'drawing.png'
